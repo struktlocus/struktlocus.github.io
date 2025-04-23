@@ -53,9 +53,4 @@ By using this project, you agree:
 
 ### Commercial Use:
 - **Strictly prohibited** under this license  
-- Contact for exceptions: `struktlocus@tuta.io`  
-
----
-
-[![CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)  
-© 2024-2025 Inn Petrov | [Ethical Guidelines](https://github.com/[your-repo]/blob/main/LICENSE.md#ethical-guidelines)
+- Contact for exceptions: `mystruktlocus@tutamail.com`  
