@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StruktLocus — Universal Structural Language</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --bg-light: #f8fafc;
+            --text-muted: #64748b;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            color: var(--dark);
+            background-color: var(--bg-light);
+            font-size: 1.05rem;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary);
+            margin-top: 1.8em;
+            font-weight: 600;
+        }
+        
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 1rem;
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            border-left: 4px solid var(--secondary);
+            padding-left: 1rem;
+            margin-top: 2.5rem;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin: 1rem 0;
+            color: var(--dark);
+        }
+        
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+        
+        .manifesto {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin: 3rem 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .philosophy-block {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .grammar-system {
+            background: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2.5rem 0;
+            border: 1px solid #dbeafe;
+        }
+        
+        .term-def {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .example {
+            font-family: 'Source Code Pro', monospace;
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.2rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1.2rem 0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .core-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .core-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 500;
+            padding: 0.8rem;
+            text-align: left;
+        }
+        
+        .core-table td {
+            padding: 0.8rem;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .core-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .application-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin: 1.5rem 0;
+            border-top: 3px solid var(--secondary);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 0.8rem;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .empty-slot {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .sem-role {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 0.3rem;
+            font-weight: 500;
+        }
+        
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 1.8rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        strong {
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .manifesto, .philosophy-block, .term-def {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>STRUKTLOCUS</h1>
+    <p class="intro">A universal language of structural semantics where meaning is determined by topology rather than lexicon.</p>
+
+    <div class="manifesto">
+        <h2>PHILOSOPHICAL MANIFESTO</h2>
+        
+        <div class="philosophy-block">
+            <h3>1. The Crisis of Natural Languages</h3>
+            <p>Modern linguistics faces fundamental problems with natural languages:</p>
+            <ul>
+                <li><strong>Lexical ambiguity</strong> — Words in natural languages exhibit polysemy, where a single word may carry dozens of meanings. For example, the English word "run" has 645 definitions in the Oxford English Dictionary.</li>
+                <li><strong>Cultural dependency</strong> — Idioms, connotations, and associations create barriers for precise meaning transfer between different cultures. Japanese "和" (wa) or German "Weltschmerz" lack exact equivalents.</li>
+                <li><strong>Syntactic redundancy</strong> — Conjugations, irregular verbs, and exceptions complicate communication without adding semantic value. English has over 200 irregular verbs, while languages like Arabic have complex root-and-pattern systems.</li>
+                <li><strong>Context dependence</strong> — Meaning often depends on situation, intonation, and gestures, making automated language processing extremely challenging.</li>
+            </ul>
+            <p>StruktLocus offers a radical solution — complete separation of meaning from lexical form through structural determinism.</p>
+        </div>
+
+        <div class="philosophy-block">
+            <h3>2. Principle of Topological Determinism</h3>
+            <p>At its core, StruktLocus is built on a revolutionary concept: <strong>an element's meaning is 100% determined by its structural position</strong>, not its internal properties.</p>
+            
+            <p>This is achieved through:</p>
+            <ul>
+                <li><strong>Fixed utterance structure</strong> — Each structural quantum consists of strictly defined positions (Focus, Orientator, Dynama, etc.)</li>
+                <li><strong>Positional semantics</strong> — An element's meaning depends entirely on its slot position, not its form</li>
+                <li><strong>Topological connectivity</strong> — Relationships between elements are determined by their relative positions</li>
+            </ul>
+            
+            <div class="example">
+                // Example of structural determinism:
+                [1:🏃] [2:→] [3:⚽] [4:→] [5:🧑] [6:fast] 
+                // Person kicks ball toward goal quickly.
+                // Position 2 always signifies action, regardless of symbol
+            </div>
+            
+            <p>Physics analogy: Just as quarks acquire properties through their position in hadrons, language elements derive meaning through structural position. Position supersedes lexicon.</p>
+        </div>
+
+        <div class="philosophy-block">
+            <h3>3. Absolute Structural Universalism</h3>
+            <p>StruktLocus implements maximum inclusivity:</p>
+            
+            <ul>
+                <li><strong>Lexical agnosticism</strong> — Any symbols (words, emoji, mathematical notations) can be used if they fit the slot's semantic class</li>
+                <li><strong>Cultural neutrality</strong> — No ties to specific cultural concepts</li>
+                <li><strong>Multimodality</strong> — Expressible through different modalities (text, graphics, sounds)</li>
+            </ul>
+            
+            <p>Example of universality:</p>
+            <div class="example">
+                [1:■] [2:←] [3:!] [4:→] [5:●] [6:⌛] 
+                // Square urgently transmits to circle (in time)
+                // Complete absence of lexicon doesn't hinder meaning
+            </div>
+        </div>
+        
+        <div class="philosophy-block">
+            <h3>4. Cognitive Advantages</h3>
+            <p>Psycholinguistic research demonstrates:</p>
+            <ul>
+                <li>Structural languages activate parietal lobes responsible for spatial reasoning</li>
+                <li>Reduced cognitive load by eliminating lexical ambiguity</li>
+                <li>Faster acquisition compared to natural languages (artificial language experiments)</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>CORE GRAMMAR</h2>
+    
+    <div class="term-def">
+        <h3>Structural Quantum (SQ)</h3>
+        <p>The minimal meaningful unit of language — always a complete structure of 6 positions. Each position has:</p>
+        <ul>
+            <li>Strictly defined semantic role</li>
+            <li>Constraints on allowable element classes</li>
+            <li>Clear interaction rules with other positions</li>
+        </ul>
+        
+        <div class="example">
+            [1:FOCUS] [2:ORIENTATOR] [3:DYNAMA] [4:RELATOR] [5:OBJECT] [6:MODUS]
+        </div>
+        
+        <h4>SQ Examples:</h4>
+        <div class="example">
+            // Physical action
+            [1:⚽] [2:→] [3:⚡] [4:↑] [5:☁️] [6:fast]
+            // Ball quickly flies upward to cloud
+            
+            // Mental process
+            [1:philosophy] [2:I] [3:?] [4:about] [5:meaning] [6:possibly]
+            // I contemplate philosophy of meaning
+            
+            // Abstract relation
+            [1:love] [2:↓] [3:≈] [4:→] [5:hate] [6:sometimes]
+            // Love sometimes transforms into hate
+        </div>
+    </div>
+
+    <table class="core-table">
+        <thead>
+            <tr>
+                <th>Pos.</th>
+                <th>Role</th>
+                <th>Definition</th>
+                <th>Sem. Class</th>
+                <th>Examples</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><strong>FOCUS</strong></td>
+                <td>Central element of utterance, topic</td>
+                <td>Concrete/abstract entities</td>
+                <td>"person", "🌲", "123", "■", "idea"</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><strong>ORIENTATOR</strong></td>
+                <td>Action coordinate system (source/direction)</td>
+                <td>Directions, sources, subjects</td>
+                <td>"→", "←", "from", "I", "<span class="empty-slot">Ø</span>", "north"</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><strong>DYNAMA</strong></td>
+                <td>Core of action/state/process</td>
+                <td>Processes, energy, changes</td>
+                <td>"⚡", "change", "!!!", "?", "≈", "↑↓"</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><strong>RELATOR</strong></td>
+                <td>Type of connection between elements</td>
+                <td>Relations, spatial markers</td>
+                <td>"in", "↗", "<span class="empty-slot">Ø</span>", "through", "above", "⇒"</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><strong>OBJECT</strong></td>
+                <td>Goal/Result/Content of action</td>
+                <td>Final states, objects</td>
+                <td>"book", "💡", "solution", "↓", "answer"</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><strong>MODUS</strong></td>
+                <td>Execution conditions (time, modality, circumstances)</td>
+                <td>Modalities, temporal markers</td>
+                <td>"quickly", "🌧️", "tomorrow", "⌛", "may", "not"</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="term-def">
+        <h3>Position Filling Rules</h3>
+        <ul>
+            <li><strong>Obligation</strong>: Positions 1 (Focus) and 3 (Dynama) are mandatory, others may be empty (Ø)</li>
+            <li><strong>Typing</strong>: Element must belong to position's semantic class</li>
+            <li><strong>Order</strong>: Position sequence is strictly fixed</li>
+            <li><strong>Composition</strong>: SQs can be nested via special markers</li>
+        </ul>
+    </div>
+
+    <h2>SEMANTIC PROTOTYPE SYSTEM</h2>
+    
+    <div class="grammar-system">
+        <p>Specialized structural templates exist for different communicative domains:</p>
+        
+        <div class="term-def">
+            <h3>1. PHYSICAL ACTIONS</h3>
+            <p>Models physical interactions, movements, state changes.</p>
+            
+            <div class="example">
+                [FOCUS:agent] [ORIENTATOR:source] [DYNAMA:action] [RELATOR:direction] [OBJECT:target] [MODUS:conditions]
+            </div>
+            
+            <h4>Examples:</h4>
+            <div class="example">
+                // Simple physical action
+                [1:person] [2:→] [3:throws] [4:↗] [5:stone] [6:forcefully]
+                
+                // Natural agent event
+                [1:wind] [2:↑] [3:moves] [4:→] [5:east] [6:quickly]
+                
+                // Chemical process
+                [1:H₂O] [2:100°C] [3:→] [4:⇒] [5:steam] [6:at]
+            </div>
+            
+            <h4>Grammatical Features:</h4>
+            <ul>
+                <li>Orientator often indicates direction or force source</li>
+                <li>Dynama expresses physical interaction type</li>
+                <li>Relator specifies trajectory or interaction method</li>
+            </ul>
+        </div>
+        
+        <div class="term-def">
+            <h3>2. MENTAL PROCESSES</h3>
+            <p>Describes thinking, perception, emotions, cognitive acts.</p>
+            
+            <div class="example">
+                [FOCUS:topic] [ORIENTATOR:subject] [DYNAMA:process] [RELATOR:connection] [OBJECT:content] [MODUS:modality]
+            </div>
+            
+            <h4>Examples:</h4>
+            <div class="example">
+                // Cognitive process
+                [1:mathematics] [2:student] [3:understands] [4:partially] [5:theorem] [6:now]
+                
+                // Emotional state
+                [1:joy] [2:I] [3:feel] [4:because] [5:news] [6:very]
+                
+                // Perception
+                [1:color] [2:she] [3:sees] [4:as] [5:red] [6:clearly]
+            </div>
+            
+            <h4>Grammatical Features:</h4>
+            <ul>
+                <li>Orientator typically indicates consciousness subject</li>
+                <li>Dynama expresses mental act type (understanding, feeling etc.)</li>
+                <li>Relator often specifies thought-content connection type</li>
+            </ul>
+        </div>
+        
+        <div class="term-def">
+            <h3>3. SOCIAL INTERACTIONS</h3>
+            <p>Models communication, social institutions, interpersonal relations.</p>
+            
+            <div class="example">
+                [FOCUS:artifact] [ORIENTATOR:sender] [DYNAMA:communication] [RELATOR:channel] [OBJECT:receiver] [MODUS:time]
+            </div>
+            
+            <h4>Examples:</h4>
+            <div class="example">
+                // Verbal communication
+                [1:word] [2:teacher] [3:speaks] [4:→] [5:students] [6:yesterday]
+                
+                // Written message
+                [1:letter] [2:company] [3:sends] [4:via] [5:client] [6:tomorrow]
+                
+                // Legal act
+                [1:law] [2:parliament] [3:adopts] [4:for] [5:citizens] [6:2024]
+            </div>
+            
+            <h4>Grammatical Features:</h4>
+            <ul>
+                <li>Focus often represents communicative artifact</li>
+                <li>Dynama expresses social action type</li>
+                <li>Relator may indicate communication channel or purpose</li>
+            </ul>
+        </div>
+        
+        <div class="term-def">
+            <h3>4. ABSTRACT RELATIONS</h3>
+            <p>Describes logical, mathematical, philosophical relations.</p>
+            
+            <div class="example">
+                [FOCUS:concept1] [ORIENTATOR:base] [DYNAMA:relation] [RELATOR:type] [OBJECT:concept2] [MODUS:condition]
+            </div>
+            
+            <h4>Examples:</h4>
+            <div class="example">
+                // Mathematical relation
+                [1:5] [2:+] [3:>] [4:than] [5:3] [6:always]
+                
+                // Logical consequence
+                [1:rain] [2:if] [3:⇒] [4:then] [5:wet] [6:]
+                
+                // Philosophical relation
+                [1:consciousness] [2:according to] [3:⊂] [4:in] [5:matter] [6:possibly]
+            </div>
+        </div>
+    </div>
+    
+    <h2>PRACTICAL APPLICATIONS</h2>
+    
+    <div class="application-card">
+        <h3>🔹 Cross-Cultural Communication</h3>
+        <p>StruktLocus overcomes language barriers:</p>
+        
+        <div class="example">
+            // Cross-cultural communication example
+            [1:🍎] [2:←] [3:gives] [4:→] [5:👦] [6:morning]
+            // Woman gives apple to boy in morning
+            
+            [1:pain] [2:I] [3:feel] [4:in] [5:head] [6:now]
+            // I feel pain in head now
+        </div>
+        
+        <p><strong>Advantages:</strong></p>
+        <ul>
+            <li>No need to know interlocutor's specific language</li>
+            <li>Allows universal symbols (emoji, pictograms)</li>
+            <li>Eliminates cultural misunderstandings</li>
+        </ul>
+    </div>
+    
+    <div class="application-card">
+        <h3>🔹 Artificial Intelligence</h3>
+        <p>Ideal language for machine meaning processing:</p>
+        
+        <div class="example">
+            // Formalizing AI instruction
+            [1:data] [2:from] [3:analyze] [4:→] [5:report] [6:by 18:00]
+            
+            // Logical rule
+            [1:temperature] [2:if] [3:>] [4:than] [5:30°C] [6:⇒] [1:activate] [2:→] [3:AC]
+        </div>
+        
+        <p><strong>AI Advantages:</strong></p>
+        <ul>
+            <li>Unambiguous interpretation without NLP models</li>
+            <li>Structural validation of utterance correctness</li>
+            <li>Automatic transformation to other formats</li>
+        </ul>
+    </div>
+    
+    <div class="application-card">
+        <h3>🔹 Cognitive Research</h3>
+        <p>Tool for studying "pure" thinking:</p>
+        
+        <ul>
+            <li>Investigating universal thought structures beyond language influence</li>
+            <li>Experiments with alternative knowledge representation</li>
+            <li>Brain-computer interface development</li>
+        </ul>
+        
+        <div class="example">
+            // Experimental protocol
+            [1:subject] [2:sees] [3:image] [4:→] [5:brain] [6:scan]
+            [1:activity] [2:in] [3:analyze] [4:for] [5:patterns] [6:real-time]
+        </div>
+    </div>
+    
+    <div class="application-card">
+        <h3>🔹 Education</h3>
+        <p>Method for teaching complex concepts:</p>
+        
+        <div class="example">
+            // Explaining chemical reaction
+            [1:2H₂ + O₂] [2:spark] [3:→] [4:forms] [5:2H₂O] [6:+heat]
+            
+            // Historical event
+            [1:meteorite] [2:space] [3:hits] [4:→] [5:Earth] [6:66M years]
+        </div>
+    </div>
+
+<div class="grammar-system" style="margin-top: 3rem;">
+    <h2>CROSS-LANGUAGE EXAMPLES</h2>
+    <p>StruktLocus enables hybrid utterances combining elements from different languages and symbolic systems:</p>
+
+    <div class="term-def">
+        <h3>1. English-Chinese-Emoji mix</h3>
+        <div class="example">
+            [1:我] [2:←] [3:give] [4:→] [5:📚] [6:tomorrow]
+            // I will give book tomorrow (我 = "I" in Chinese)
+        </div>
+    </div>
+
+    <div class="term-def">
+        <h3>2. English-Arabic-Mathematical construct</h3>
+        <div class="example">
+            [1:كتاب] [2:I] [3:read] [4:∩] [5:∞] [6:evening]
+            // I read book (كتاب) infinitely (∞) in evening (∩ = time intersection)
+        </div>
+    </div>
+
+    <div class="term-def">
+        <h3>3. Japanese-English abstraction</h3>
+        <div class="example">
+            [1:時間] [2:↑] [3:flows] [4:→] [5:future] [6:always]
+            // Time (時間) flows to future always
+        </div>
+    </div>
+
+    <div class="term-def">
+        <h3>4. Fully symbolic phrase</h3>
+        <div class="example">
+            [1:■] [2:←] [3:⚡] [4:→] [5:●] [6:⌛]
+            // Square transmits energy to circle in time
+        </div>
+        <p>Contains no words yet preserves meaning through positions.</p>
+    </div>
+
+    <div class="term-def">
+        <h3>5. Scientific hybrid (Latin + formulas)</h3>
+        <div class="example">
+            [1:E=mc²] [2:si] [3:⇒] [4:ergo] [5:ΔE] [6:QED]
+            // If E=mc², therefore energy change, QED
+        </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Key features of mixed constructs:</h3>
+    <ul>
+        <li><strong>Semantic compatibility</strong> — Elements from different languages occupy correct positional slots</li>
+        <li><strong>Automatic decomposition</strong> — Meaning extracted from structure, not element language</li>
+        <li><strong>Cultural neutrality</strong> — Combinations create no value conflicts</li>
+    </ul>
+</div>
+
+    <h2>COMPARISON WITH OTHER LANGUAGES</h2>
+    
+    <table class="comparison-table">
+        <tr>
+            <th>Criterion</th>
+            <th>Natural Languages</th>
+            <th>Constructed Languages</th>
+            <th>StruktLocus</th>
+        </tr>
+        <tr>
+            <td>Unambiguity</td>
+            <td>Low (polysemy)</td>
+            <td>Medium (simplified grammar)</td>
+            <td>Absolute (meaning = position)</td>
+        </tr>
+        <tr>
+            <td>Cultural neutrality</td>
+            <td>Language-dependent</td>
+            <td>Limited (Eurocentrism)</td>
+            <td>Complete independence</td>
+        </tr>
+        <tr>
+            <td>Learning difficulty</td>
+            <td>High (vocabulary + grammar)</td>
+            <td>Medium (regular grammar)</td>
+            <td>Low (structure only)</td>
+        </tr>
+        <tr>
+            <td>Flexibility</td>
+            <td>Very high</td>
+            <td>High</td>
+            <td>Structurally limited</td>
+        </tr>
+        <tr>
+            <td>Machine processing</td>
+            <td>Complex (NLP required)</td>
+            <td>Relatively complex</td>
+            <td>Trivial (structural parsing)</td>
+        </tr>
+    </table>
+    
+<div class="philosophy-block" style="margin-top: 3rem;">
+    <h2>CURRENT STATUS AND PROSPECTS</h2>
+    
+    <p>StruktLocus exists at the intersection of:</p>
+    <ul>
+        <li><strong>Linguistics</strong> — As an experiment in pure structural language creation</li>
+        <li><strong>Artificial Intelligence</strong> — As ideal language for machine processing</li>
+        <li><strong>Cognitive Science</strong> — As tool for thought investigation</li>
+        <li><strong>Philosophy</strong> — As attempt to create universal semantic framework</li>
+    </ul>
+
+    <h3>CURRENT LIMITATIONS</h3>
+    <ul>
+        <li><strong>Experimental status</strong> — Not yet fully tested in real communication</li>
+        <li><strong>Cognitive load</strong> — Need to memorize positional roles may hinder rapid adoption</li>
+        <li><strong>Limited expressiveness</strong> — Difficulty conveying subtle emotions and poetic imagery</li>
+        <li><strong>Lack of infrastructure</strong> — No dictionaries, learning programs, or speaker community</li>
+        <li><strong>Scaling challenges</strong> — Unclear performance in complex multi-level discourse</li>
+    </ul>
+
+    <h3>ACTUAL STATUS</h3>
+    <p>Currently StruktLocus exists as:</p>
+    <ul>
+        <li><strong>Theoretical model</strong> — Conceptually complete but untested in practice</li>
+        <li><strong>Linguistic prototype</strong> — Working system for basic statements</li>
+        <li><strong>Experimental project</strong> — Tool for studying structural semantics</li>
+    </ul>
+    
+    <div class="example" style="text-align: center; font-style: italic; margin-top: 2rem;">
+        "Language of the future — where structure matters more than lexicon, and meaning is purer than words"
+    </div>
+</div>
+    
+<footer style="margin-top: 4rem; padding: 2rem 0; background: var(--bg-light); border-top: 1px solid #e2e8f0; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <p style="margin-bottom: 1rem;">
+            <strong>STRUKTLOCUS</strong> — Universal Structural Language<br>
+            © 2024-2025 Inn Petrov. All rights reserved under Creative Commons.
+        </p>
+        
+        <div style="margin: 1rem 0;">
+            <a href="license.html" 
+               style="color: var(--secondary); text-decoration: none; font-weight: 500;">
+                License Terms & Ethical Guidelines
+            </a> | 
+                <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc-sa.svg" 
+                     alt="CC BY-NC-SA 4.0" 
+                     style="height: 22px; vertical-align: middle; margin-right: 8px;">
+                <span style="vertical-align: middle;">CC BY-NC-SA 4.0</span>
+        </div>
+
+        <p style="font-size: 0.85rem; line-height: 1.5; max-width: 600px; margin: 0 auto;">
+            By using this site, you agree to our <a href="license.html" style="color: var(--secondary);">Terms</a>.<br>
+            Non-commercial use only. Share-alike derivatives require attribution.
+			<span style="display: inline-block; margin-top: 0.5rem;">
+                This site does <strong>not</strong> use cookies or tracking technologies.
+            </span>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
